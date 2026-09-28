@@ -26,45 +26,8 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             WeatherAppTheme {
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    RowDemo(modifier = Modifier.padding(innerPadding))
-//                    Greeting(
-//                        name = "Kiera!!!",
-//                        modifier = Modifier.padding(innerPadding)
-//                    )
-                }
+
             }
         }
     }
 }
-
-@Composable
-fun RowDemo(modifier: Modifier = Modifier) {
-    Row(
-        horizontalArrangement = Arrangement.SpaceEvenly,
-        modifier = Modifier
-            .padding(vertical = 50.dp)
-            .fillMaxWidth()
-    ) {
-        Text(
-            text = "Hello, Michael.",
-            modifier = modifier,
-        )
-        Text(
-            text = "Hello, John.",
-            modifier = modifier,
-        )
-    }
-}
-
-//@Composable
-//fun Greeting(name: String, modifier: Modifier = Modifier) {
-//    Text(
-//        text = "Hello $name!",
-//        modifier = modifier
-//            .padding(50.dp)
-//            .border(width = 2.dp, color=Color.Blue, )
-//            .padding(50.dp),
-//        color = Color.Red
-//    )
-//}
