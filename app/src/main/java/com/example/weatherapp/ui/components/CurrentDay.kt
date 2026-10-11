@@ -1,4 +1,4 @@
-package com.example.weatherapp.ui.Components
+package com.example.weatherapp.ui.components
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
@@ -19,7 +19,7 @@ import com.example.weatherapp.R
 //Should this be the package structure? Is 'Components' what you'd call these?
 
 @Composable
-fun CurrentDay(modifier: Modifier) {
+fun CurrentDay() {
 
     //TODO: Retrieve this data from actual API call instead of hardcoding
     val weather = Weather(
@@ -59,7 +59,6 @@ fun CurrentDay(modifier: Modifier) {
         Text(
             text="${weather.tempCurrent}\u00B0C", // \u00B0 is degree symbol
             fontSize = textSize * 2
-
         )
 
         Text(
