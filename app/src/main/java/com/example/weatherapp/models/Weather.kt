@@ -16,4 +16,6 @@ data class Weather(
     val tempHigh: Int,
     val tempLow: Int,
     val feelsLike: Int,
+    val windSpeed: Int,
+    val windDir: Double
 )
