@@ -50,7 +50,7 @@ fun ForecastDay(weather: Weather) {
         verticalArrangement = Arrangement.Center
     ) {
         Text(
-            text="$dayOfWeek, $month, ${weather.date.date}"
+            text="$dayOfWeek, $month ${weather.date.date}"
         )
         Image( //TODO: Implement conditional logic based on weather data
             painter = painterResource(R.drawable.cloud),
