@@ -9,9 +9,9 @@ import androidx.compose.ui.Modifier
 import com.example.weatherapp.ui.components.CurrentDay
 
 @Composable
-fun TodayScreen(){
+fun TodayScreen(modifier: Modifier){
     Column(
-        modifier = Modifier.fillMaxSize(),
+        modifier = modifier.fillMaxSize(),
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center
     ) {

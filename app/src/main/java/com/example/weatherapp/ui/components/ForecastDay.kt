@@ -15,7 +15,7 @@ import com.example.weatherapp.R
 import com.example.weatherapp.models.Weather
 
 @Composable
-fun Forecast(weather: Weather) {
+fun ForecastDay(weather: Weather) {
     val dayOfWeek: String = when(weather.date.day){ // date.day is deprecated, but I don't care enough to refactor to use Calendar
         0 -> "Sun"
         1 -> "Mon"
