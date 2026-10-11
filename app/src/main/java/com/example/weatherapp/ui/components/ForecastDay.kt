@@ -4,18 +4,25 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.example.weatherapp.R
 import com.example.weatherapp.models.Weather
 
 @Composable
 fun ForecastDay(weather: Weather) {
+    val nbsp = '\u00A0' //We're using this because our misc info at the bottom is all one line
+                        //And we don't want the sentences to be separated
+
     val dayOfWeek: String = when(weather.date.day){ // date.day is deprecated, but I don't care enough to refactor to use Calendar
         0 -> "Sun"
         1 -> "Mon"
@@ -50,7 +57,8 @@ fun ForecastDay(weather: Weather) {
         verticalArrangement = Arrangement.Center
     ) {
         Text(
-            text="$dayOfWeek, $month ${weather.date.date}"
+            text="$dayOfWeek, $month ${weather.date.date}",
+            fontWeight = FontWeight.Medium
         )
         Image( //TODO: Implement conditional logic based on weather data
             painter = painterResource(R.drawable.cloud),
@@ -58,11 +66,19 @@ fun ForecastDay(weather: Weather) {
             contentDescription = "Cloud",
         )
         Text(
-            text="${weather.tempHigh}\u00B0C High, ${weather.tempLow}\u00B0C Low"
+            text="${weather.tempHigh}\u00B0C High, ${weather.tempLow}\u00B0C Low",
+            fontSize = 18.sp
         )
         Text( //TODO: Conditional logic, determine relevant fields to include based on weather data
-            text="CLOUD/SKY STATEMENT. Chance of rain ${weather.pop}. Amount ${weather.rainMm}. " +
-                    "Maximum winds ${weather.windSpeed}kph. Humidity ${"%.2f".format(weather.humidity*100)}"
+            text="CLOUD/SKY STATEMENT. " +
+                    "Chance of rain$nbsp${"%.0f".format(weather.pop * 100)}%. " +
+                    "Amount$nbsp${weather.rainMm}mm. " +
+                    "Maximum winds$nbsp${weather.windSpeed}kph. " +
+                    "Humidity$nbsp${"%.2f".format(weather.humidity*100)}%",
+            modifier=Modifier
+                .padding(10.dp, 5.dp),
+            textAlign = TextAlign.Center,
+            fontSize = 14.sp
         )
     }
 }
