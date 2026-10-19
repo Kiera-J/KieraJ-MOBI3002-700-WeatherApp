@@ -5,16 +5,19 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.material3.Button
 import androidx.compose.material3.HorizontalDivider
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.example.weatherapp.models.Weather
 import com.example.weatherapp.ui.components.ForecastDay
+import com.example.weatherapp.viewmodels.MainViewModel
 import java.util.Date
 
 @Composable
-fun ForecastScreen(modifier: Modifier) {
+fun ForecastScreen(modifier: Modifier, viewModel: MainViewModel) {
     val weathers = listOf<Weather>( //TODO: retrieve forecast data from API instead of hardcoding
         Weather(
             tempCurrent = 5,
@@ -73,4 +76,6 @@ fun ForecastScreen(modifier: Modifier) {
             HorizontalDivider(thickness = 2.dp)
         }
     }
+    Button(onClick = {viewModel.message = "Forecast Message"}) { }
+    Text(viewModel.message);
 }

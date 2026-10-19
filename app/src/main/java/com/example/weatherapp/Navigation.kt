@@ -4,7 +4,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.BrightnessLow
 import androidx.compose.material.icons.filled.CalendarMonth
-import androidx.compose.material.icons.filled.Search
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
@@ -21,12 +20,14 @@ import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.weatherapp.ui.screens.ForecastScreen
 import com.example.weatherapp.ui.screens.TodayScreen
+import com.example.weatherapp.viewmodels.MainViewModel
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -34,6 +35,8 @@ fun Navigation(){
 
     val navController = rememberNavController()
     var selectedIndex by remember { mutableIntStateOf(0) } // default set to 0
+    val vm : MainViewModel = viewModel();
+
     Scaffold(
         topBar = {
             TopAppBar(
@@ -88,10 +91,10 @@ fun Navigation(){
             modifier = Modifier.padding(innerPadding)
         ) {
             composable(route = "today") {
-                TodayScreen(Modifier)
+                TodayScreen(Modifier, vm)
             }
             composable(route = "forecast") {
-                ForecastScreen(Modifier)
+                ForecastScreen(Modifier, vm)
             }
         }
     }

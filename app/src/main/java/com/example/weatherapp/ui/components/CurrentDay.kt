@@ -41,7 +41,6 @@ fun CurrentDay() {
     val textSize = 18.sp
 
     Column(
-        modifier = Modifier.fillMaxSize(),
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center
     ){
