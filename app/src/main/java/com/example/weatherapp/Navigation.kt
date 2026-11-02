@@ -25,6 +25,7 @@ import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.example.weatherapp.data.dao.Weather
 import com.example.weatherapp.ui.screens.ForecastScreen
 import com.example.weatherapp.ui.screens.TodayScreen
 import com.example.weatherapp.viewmodels.MainViewModel
@@ -35,7 +36,8 @@ fun Navigation(){
 
     val navController = rememberNavController()
     var selectedIndex by remember { mutableIntStateOf(0) } // default set to 0
-    val vm : MainViewModel = viewModel();
+    val vm : MainViewModel = viewModel()
+    vm.getWeather("Halifax Canada")
 
     Scaffold(
         topBar = {

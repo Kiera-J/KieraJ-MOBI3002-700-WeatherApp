@@ -88,7 +88,7 @@ data class Day(
     @SerializedName("totalsnow_cm") val totalsnowCm: Float,
     @SerializedName("avgvis_km") val avgvisKm: Float,
     @SerializedName("avgvis_miles") val avgvisMiles: Float,
-    @SerializedName("avghumidity") val avgHumidity: Float,
+    @SerializedName("avghumidity") val avgHumidity: Int,
     val condition: Condition,
     val uv: Float,
     @SerializedName("daily_will_it_rain") val dailyWillItRain: Int,

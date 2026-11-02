@@ -60,6 +60,10 @@ dependencies {
     // Navigation
     implementation("androidx.navigation:navigation-compose:2.10.2")
 
+    // Coil (use v3.4.0 for Kotlin compatibility)
+    implementation("io.coil-kt.coil3:coil-compose:3.4.0")
+    implementation("io.coil-kt.coil3:coil-network-okhttp:3.4.0")
+
     // Icons (for the nav menu buttons)
     implementation("androidx.compose.material:material-icons-core:1.7.8")
     implementation("androidx.compose.material:material-icons-extended:1.7.8")

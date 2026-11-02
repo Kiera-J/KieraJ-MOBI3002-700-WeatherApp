@@ -4,7 +4,7 @@ import java.util.Date
 
 //Should I have separate classes for forecasts and current data?
 //Probably, not sure, this is a temp class just for visual demo anyway
-data class Weather(
+data class WeatherOld(
     val date: Date,
     val location: String,
     val humidity: Double,
