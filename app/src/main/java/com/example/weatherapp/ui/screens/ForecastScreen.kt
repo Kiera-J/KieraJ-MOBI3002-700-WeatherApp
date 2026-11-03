@@ -1,6 +1,5 @@
 package com.example.weatherapp.ui.screens
 
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -10,30 +9,25 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
-import androidx.compose.material3.Button
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil3.compose.AsyncImage
-import com.example.weatherapp.DateConverter
-import com.example.weatherapp.R
-import com.example.weatherapp.models.WeatherOld
+import com.example.weatherapp.ConvertDate
+import com.example.weatherapp.UpresIcon
 import com.example.weatherapp.viewmodels.MainViewModel
 import java.util.Calendar
-import java.util.Date
-import java.util.Locale
 
 @Composable
 fun ForecastScreen(modifier: Modifier, viewModel: MainViewModel) {
     val weather = viewModel.weather
-    val cal = Calendar.Builder();
+    val cal = Calendar.Builder()
 
     val nbsp = '\u00A0' //We're using this because our misc info at the bottom is all one line
     //And we don't want the sentences to be separated
@@ -47,9 +41,12 @@ fun ForecastScreen(modifier: Modifier, viewModel: MainViewModel) {
             items(weather.forecast.forecastday) { forecastday ->
 
                 //Set date values for current day
-                val YMD = DateConverter().Convert(forecastday.date)
-                cal.setDate(YMD[0], YMD[1], YMD[2])
-                val date = cal.build();
+                val ymd = ConvertDate(forecastday.date)
+                cal.setDate(ymd[0], ymd[1], ymd[2])
+                val date = cal.build()
+
+                //Get higher-res version of today's icon
+                val newLink = UpresIcon(forecastday.day.condition.icon)
 
                 Spacer(Modifier.height(25.dp))
 
@@ -74,7 +71,7 @@ fun ForecastScreen(modifier: Modifier, viewModel: MainViewModel) {
                         fontWeight = FontWeight.Medium
                     )
                     AsyncImage(
-                        model = "https:${forecastday.day.condition.icon}",
+                        model = "https:${newLink}",
                         modifier = Modifier.size(80.dp),
                         contentDescription = forecastday.day.condition.text
                     )
