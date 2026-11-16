@@ -7,8 +7,10 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.BrightnessLow
 import androidx.compose.material.icons.filled.CalendarMonth
+import androidx.compose.material.icons.filled.PinDrop
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarDefaults
@@ -30,6 +32,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.weatherapp.ui.screens.ForecastScreen
+import com.example.weatherapp.ui.screens.LocationsScreen
 import com.example.weatherapp.ui.screens.TodayScreen
 import com.example.weatherapp.viewmodels.MainViewModel
 
@@ -73,6 +76,26 @@ fun Navigation(){
                     ),
                     title = {
                         Text("${viewModel.weather!!.location.name}, ${viewModel.weather!!.location.region}")
+                    },
+                    actions = {
+                        IconButton(
+                            content = {
+                                Icon(
+                                    imageVector = Icons.Default.PinDrop,
+                                    contentDescription = "Locations"
+                                )
+                            },
+                            enabled = true,
+                            onClick={
+                                navController.navigate(route="locations"){
+                                    popUpTo(navController.graph.findStartDestination().id) {
+                                        saveState = true
+                                    }
+                                    launchSingleTop = true
+                                    restoreState = true
+                                }
+                            }
+                        )
                     }
                 )
             },
@@ -122,6 +145,9 @@ fun Navigation(){
                 }
                 composable(route = "forecast") {
                     ForecastScreen(Modifier, viewModel)
+                }
+                composable(route = "locations") {
+                    LocationsScreen(Modifier, viewModel)
                 }
             }
         }

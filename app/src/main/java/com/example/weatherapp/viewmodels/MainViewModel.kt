@@ -25,6 +25,8 @@ class MainViewModel(app: Application) : AndroidViewModel(app) {
     private val fusedLocationClient = LocationServices.getFusedLocationProviderClient(app)
     var location by mutableStateOf<Location?>(null)
 
+    var locationList by mutableStateOf<List<String>>(listOf())
+
     private val api = Retrofit.Builder()
         .baseUrl("https://api.weatherapi.com/")
         .addConverterFactory(GsonConverterFactory.create())
