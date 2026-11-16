@@ -7,8 +7,8 @@ import android.util.Log
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateListOf
 import androidx.lifecycle.AndroidViewModel
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.weatherapp.data.WeatherApi
 import com.example.weatherapp.data.dao.Weather
@@ -25,7 +25,7 @@ class MainViewModel(app: Application) : AndroidViewModel(app) {
     private val fusedLocationClient = LocationServices.getFusedLocationProviderClient(app)
     var location by mutableStateOf<Location?>(null)
 
-    var locationList by mutableStateOf<List<String>>(listOf())
+    var savedLocations = mutableStateListOf<String>()
 
     private val api = Retrofit.Builder()
         .baseUrl("https://api.weatherapi.com/")

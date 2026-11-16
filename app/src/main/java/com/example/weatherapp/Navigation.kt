@@ -66,8 +66,7 @@ fun Navigation(){
     viewModel.location?.let {
         viewModel.getWeather("${viewModel.location!!.latitude},${viewModel.location!!.longitude}")
     }
-    viewModel.weather?.let {
-        Scaffold(
+    Scaffold(
             topBar = {
                 TopAppBar(
                     colors = topAppBarColors(
@@ -75,7 +74,13 @@ fun Navigation(){
                         titleContentColor = MaterialTheme.colorScheme.primary,
                     ),
                     title = {
-                        Text("${viewModel.weather!!.location.name}, ${viewModel.weather!!.location.region}")
+
+                        Text(
+                            if (viewModel.weather != null)
+                                "${viewModel.weather!!.location.name }, ${viewModel.weather!!.location.region}"
+                            else
+                                "No Location Selected"
+                        )
                     },
                     actions = {
                         IconButton(
@@ -151,5 +156,5 @@ fun Navigation(){
                 }
             }
         }
-    }
+
 }
